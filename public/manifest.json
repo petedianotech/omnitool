@@ -1,0 +1,21 @@
+{
+  "name": "OmniTool - Everyday Solvers",
+  "short_name": "OmniTool",
+  "description": "A universal utility app featuring tools for life logistics, document quick-fixes, well-being, and security.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "https://picsum.photos/seed/omnitool192/192/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://picsum.photos/seed/omnitool512/512/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
