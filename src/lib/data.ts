@@ -1,5 +1,10 @@
 export const tools = [
+  // AI Tools
+  { id: "ai-summarizer", name: "AI Text Summarizer", category: "AI Tools", icon: "Sparkles", description: "Instantly summarize long articles, emails, or notes." },
+  { id: "ai-rewriter", name: "AI Text Rewriter", category: "AI Tools", icon: "Type", description: "Fix grammar, improve flow, and change the tone of your text." },
+
   // Life Logistics
+  { id: "subscription-manager", name: "Subscription Tracker", category: "Life Logistics", icon: "CreditCard", description: "Track your monthly and yearly subscriptions." },
   { id: "currency-converter", name: "Visual Currency Converter", category: "Life Logistics", icon: "DollarSign", description: "Convert currencies with visual buying power." },
   { id: "tip-split", name: "Smart Tip & Split", category: "Life Logistics", icon: "Calculator", description: "Split bills easily among friends." },
   { id: "timezone-meeter", name: "Time Zone Meeter", category: "Life Logistics", icon: "Globe", description: "Find the perfect meeting time across time zones." },
@@ -24,14 +29,15 @@ export const tools = [
 ];
 
 export const categories = [
-  { id: "developers", name: "Developers", tools: ["pomodoro", "text-cleaner", "password-gen", "timezone-meeter"] },
-  { id: "designers", name: "Designers", tools: ["image-resizer", "metadata-stripper", "bluelight-tester", "pomodoro"] },
-  { id: "students", name: "Students", tools: ["pomodoro", "pdf-converter", "date-calculator", "text-cleaner"] },
-  { id: "teachers", name: "Teachers", tools: ["qr-generator", "pomodoro", "pdf-converter", "breath-timer"] },
-  { id: "freelancers", name: "Freelancers", tools: ["currency-converter", "timezone-meeter", "pomodoro", "pdf-converter"] },
+  { id: "ai-tools", name: "AI Power Tools", tools: ["ai-summarizer", "ai-rewriter", "text-cleaner"] },
+  { id: "developers", name: "Developers", tools: ["subscription-manager", "pomodoro", "text-cleaner", "password-gen", "timezone-meeter"] },
+  { id: "designers", name: "Designers", tools: ["subscription-manager", "image-resizer", "metadata-stripper", "bluelight-tester", "pomodoro"] },
+  { id: "students", name: "Students", tools: ["subscription-manager", "ai-summarizer", "ai-rewriter", "pomodoro", "pdf-converter", "date-calculator", "text-cleaner"] },
+  { id: "teachers", name: "Teachers", tools: ["ai-summarizer", "ai-rewriter", "qr-generator", "pomodoro", "pdf-converter", "breath-timer"] },
+  { id: "freelancers", name: "Freelancers", tools: ["subscription-manager", "ai-rewriter", "currency-converter", "timezone-meeter", "pomodoro", "pdf-converter"] },
   { id: "travelers", name: "Travelers", tools: ["currency-converter", "timezone-meeter", "tip-split", "metadata-stripper"] },
-  { id: "writers", name: "Writers", tools: ["text-cleaner", "pomodoro", "breath-timer", "bluelight-tester"] },
-  { id: "marketers", name: "Marketers", tools: ["qr-generator", "image-resizer", "text-cleaner", "currency-converter"] },
+  { id: "writers", name: "Writers", tools: ["ai-summarizer", "ai-rewriter", "text-cleaner", "pomodoro", "breath-timer", "bluelight-tester"] },
+  { id: "marketers", name: "Marketers", tools: ["subscription-manager", "ai-summarizer", "ai-rewriter", "qr-generator", "image-resizer", "text-cleaner", "currency-converter"] },
   { id: "managers", name: "Managers", tools: ["timezone-meeter", "pomodoro", "date-calculator", "breath-timer"] },
   { id: "healthcare", name: "Healthcare Workers", tools: ["hydration-tracker", "breath-timer", "date-calculator", "pomodoro"] },
   { id: "retail", name: "Retail Workers", tools: ["tip-split", "currency-converter", "hydration-tracker", "breath-timer"] },

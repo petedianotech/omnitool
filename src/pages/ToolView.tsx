@@ -5,6 +5,9 @@ import * as Icons from "lucide-react";
 import { useFavorites } from "../lib/useFavorites";
 
 // Lazy load tools to keep the bundle small
+const AiSummarizer = lazy(() => import("../tools/AiSummarizer"));
+const AiRewriter = lazy(() => import("../tools/AiRewriter"));
+const SubscriptionManager = lazy(() => import("../tools/SubscriptionManager"));
 const CurrencyConverter = lazy(() => import("../tools/CurrencyConverter"));
 const TipSplitter = lazy(() => import("../tools/TipSplitter"));
 const TimeZoneMeeter = lazy(() => import("../tools/TimeZoneMeeter"));
@@ -22,6 +25,9 @@ const DigitalShredder = lazy(() => import("../tools/DigitalShredder"));
 const MetadataStripper = lazy(() => import("../tools/MetadataStripper"));
 
 const toolComponents: Record<string, React.ComponentType> = {
+  "ai-summarizer": AiSummarizer,
+  "ai-rewriter": AiRewriter,
+  "subscription-manager": SubscriptionManager,
   "currency-converter": CurrencyConverter,
   "tip-split": TipSplitter,
   "timezone-meeter": TimeZoneMeeter,

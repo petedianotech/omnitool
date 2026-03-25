@@ -21,8 +21,8 @@ export default function Home() {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <header className="hidden md:block space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">OmniTool</h1>
-        <p className="text-neutral-500">Everyday solvers for everyone.</p>
+        <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">OmaxTool</h1>
+        <p className="text-neutral-500 font-medium">Everyday solvers for everyone.</p>
       </header>
 
       {/* Universal Search Bar */}
@@ -49,9 +49,9 @@ export default function Home() {
                 <Link
                   key={tool.id}
                   to={`/tool/${tool.id}`}
-                  className="flex items-center p-4 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:shadow-md transition-all active:scale-95"
+                  className="flex items-center p-4 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:shadow-md hover:border-blue-200 transition-all active:scale-95 group"
                 >
-                  <div className="p-3 bg-blue-50 text-blue-600 rounded-xl mr-4">
+                  <div className="p-3 bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600 rounded-xl mr-4 group-hover:scale-110 transition-transform">
                     <Icon size={24} />
                   </div>
                   <div className="flex-1">
@@ -83,9 +83,9 @@ export default function Home() {
                     <Link
                       key={tool.id}
                       to={`/tool/${tool.id}`}
-                      className="flex flex-col items-center p-4 bg-white rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md transition-all active:scale-95 text-center gap-3"
+                      className="flex flex-col items-center p-4 bg-white rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md hover:border-yellow-300 transition-all active:scale-95 text-center gap-3 group"
                     >
-                      <div className="p-3 bg-yellow-50 text-yellow-600 rounded-xl">
+                      <div className="p-3 bg-gradient-to-br from-yellow-50 to-orange-50 text-yellow-600 rounded-xl group-hover:scale-110 transition-transform">
                         <Icon size={24} />
                       </div>
                       <span className="text-xs font-medium text-neutral-700 line-clamp-2">{tool.name}</span>
@@ -106,9 +106,9 @@ export default function Home() {
                   <Link
                     key={tool.id}
                     to={`/tool/${tool.id}`}
-                    className="flex flex-col items-center p-4 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:shadow-md transition-all active:scale-95 text-center gap-3"
+                    className="flex flex-col items-center p-4 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:shadow-md hover:border-blue-200 transition-all active:scale-95 text-center gap-3 group"
                   >
-                    <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
+                    <div className="p-3 bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600 rounded-xl group-hover:scale-110 transition-transform">
                       <Icon size={24} />
                     </div>
                     <span className="text-xs font-medium text-neutral-700 line-clamp-2">{tool.name}</span>
@@ -126,9 +126,9 @@ export default function Home() {
                 <Link
                   key={category.id}
                   to={`/category/${category.id}`}
-                  className="snap-start shrink-0 w-40 p-4 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:border-blue-200 hover:shadow-md transition-all"
+                  className="snap-start shrink-0 w-40 p-4 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:border-blue-200 hover:shadow-md transition-all group"
                 >
-                  <h3 className="font-semibold text-neutral-900 mb-1">{category.name}</h3>
+                  <h3 className="font-semibold text-neutral-900 mb-1 group-hover:text-blue-600 transition-colors">{category.name}</h3>
                   <p className="text-xs text-neutral-500">{category.tools.length} tools</p>
                 </Link>
               ))}
