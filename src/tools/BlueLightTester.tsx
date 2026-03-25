@@ -11,23 +11,23 @@ export default function BlueLightTester() {
   return (
     <div className="space-y-8 max-w-md mx-auto py-8 relative z-10">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold text-neutral-800">Blue Light Filter</h2>
-        <p className="text-neutral-500">Test how different screen tints look for late-night reading.</p>
+        <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100">Blue Light Filter</h2>
+        <p className="text-neutral-500 dark:text-neutral-400">Test how different screen tints look for late-night reading.</p>
       </div>
 
-      <div className="bg-white p-6 rounded-3xl shadow-sm border border-neutral-200 space-y-6">
+      <div className="bg-white dark:bg-neutral-900 p-6 rounded-3xl shadow-sm border border-neutral-200 dark:border-neutral-800 space-y-6">
         <div className="flex items-center justify-between">
-          <span className="font-medium text-neutral-700">Enable Filter</span>
+          <span className="font-medium text-neutral-700 dark:text-neutral-300">Enable Filter</span>
           <button
             onClick={() => setIsActive(!isActive)}
-            className={`w-14 h-8 rounded-full p-1 transition-colors ${isActive ? 'bg-amber-500' : 'bg-neutral-200'}`}
+            className={`w-14 h-8 rounded-full p-1 transition-colors ${isActive ? 'bg-amber-500' : 'bg-neutral-200 dark:bg-neutral-700'}`}
           >
             <div className={`w-6 h-6 bg-white rounded-full shadow-md transform transition-transform ${isActive ? 'translate-x-6' : 'translate-x-0'}`} />
           </button>
         </div>
 
         <div className={`space-y-4 transition-opacity ${isActive ? 'opacity-100' : 'opacity-50 pointer-events-none'}`}>
-          <div className="flex justify-between items-center text-sm text-neutral-500">
+          <div className="flex justify-between items-center text-sm text-neutral-500 dark:text-neutral-400">
             <Sun size={18} />
             <span>Intensity</span>
             <Moon size={18} />
@@ -39,16 +39,16 @@ export default function BlueLightTester() {
             step="5"
             value={warmth}
             onChange={(e) => setWarmth(Number(e.target.value))}
-            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-amber-500"
+            className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-amber-500"
           />
-          <div className="text-center text-xs font-medium text-amber-600">
+          <div className="text-center text-xs font-medium text-amber-600 dark:text-amber-500">
             {warmth}% Warmth
           </div>
         </div>
       </div>
 
-      <div className="p-6 bg-neutral-50 rounded-2xl border border-neutral-100 text-sm text-neutral-600 leading-relaxed">
-        <h3 className="font-semibold text-neutral-800 mb-2">Sample Reading Text</h3>
+      <div className="p-6 bg-neutral-50 dark:bg-neutral-900/50 rounded-2xl border border-neutral-100 dark:border-neutral-800 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+        <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 mb-2">Sample Reading Text</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>

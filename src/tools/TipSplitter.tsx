@@ -16,27 +16,27 @@ export default function TipSplitter() {
     <div className="space-y-6 max-w-md mx-auto">
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-neutral-700 mb-1">Bill Amount</label>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Bill Amount</label>
           <div className="relative">
-            <span className="absolute left-4 top-3 text-neutral-500">$</span>
+            <span className="absolute left-4 top-3 text-neutral-500 dark:text-neutral-400">$</span>
             <input
               type="number"
               value={bill || ""}
               onChange={(e) => setBill(Number(e.target.value))}
-              className="w-full pl-8 pr-4 py-3 bg-neutral-50 border border-neutral-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full pl-8 pr-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-neutral-900 dark:text-neutral-50"
             />
           </div>
         </div>
 
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium text-neutral-700">Tax Amount (Optional)</label>
+          <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Tax Amount (Optional)</label>
           <div className="relative w-32">
-            <span className="absolute left-3 top-2 text-neutral-500">$</span>
+            <span className="absolute left-3 top-2 text-neutral-500 dark:text-neutral-400">$</span>
             <input
               type="number"
               value={taxAmount || ""}
               onChange={(e) => setTaxAmount(Number(e.target.value))}
-              className="w-full pl-7 pr-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+              className="w-full pl-7 pr-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm text-neutral-900 dark:text-neutral-50"
             />
           </div>
         </div>
@@ -48,16 +48,16 @@ export default function TipSplitter() {
               id="taxExclusive"
               checked={taxExclusive}
               onChange={(e) => setTaxExclusive(e.target.checked)}
-              className="rounded text-blue-600 focus:ring-blue-500"
+              className="rounded text-blue-600 focus:ring-blue-500 bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-700"
             />
-            <label htmlFor="taxExclusive" className="text-sm text-neutral-600">Calculate tip before tax</label>
+            <label htmlFor="taxExclusive" className="text-sm text-neutral-600 dark:text-neutral-400">Calculate tip before tax</label>
           </div>
         )}
 
         <div className="pt-4">
           <div className="flex justify-between mb-2">
-            <label className="text-sm font-medium text-neutral-700">Tip Percentage</label>
-            <span className="font-bold text-blue-600">{tipPercent}%</span>
+            <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Tip Percentage</label>
+            <span className="font-bold text-blue-600 dark:text-blue-400">{tipPercent}%</span>
           </div>
           <input
             type="range"
@@ -66,9 +66,9 @@ export default function TipSplitter() {
             step="1"
             value={tipPercent}
             onChange={(e) => setTipPercent(Number(e.target.value))}
-            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+            className="w-full h-2 bg-neutral-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-blue-600 dark:accent-blue-500"
           />
-          <div className="flex justify-between text-xs text-neutral-400 mt-1">
+          <div className="flex justify-between text-xs text-neutral-400 dark:text-neutral-500 mt-1">
             <span>0%</span>
             <span>15%</span>
             <span>30%</span>
@@ -77,23 +77,23 @@ export default function TipSplitter() {
 
         <div className="pt-4">
           <div className="flex justify-between mb-2">
-            <label className="text-sm font-medium text-neutral-700">Split Between</label>
-            <span className="font-bold text-blue-600">{people} people</span>
+            <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Split Between</label>
+            <span className="font-bold text-blue-600 dark:text-blue-400">{people} people</span>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => setPeople(Math.max(1, people - 1))} className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-xl font-bold">-</button>
-            <span className="flex-1 text-center text-xl font-medium">{people}</span>
-            <button onClick={() => setPeople(people + 1)} className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-xl font-bold">+</button>
+            <button onClick={() => setPeople(Math.max(1, people - 1))} className="w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 flex items-center justify-center text-xl font-bold text-neutral-900 dark:text-neutral-50">-</button>
+            <span className="flex-1 text-center text-xl font-medium text-neutral-900 dark:text-neutral-50">{people}</span>
+            <button onClick={() => setPeople(people + 1)} className="w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 flex items-center justify-center text-xl font-bold text-neutral-900 dark:text-neutral-50">+</button>
           </div>
         </div>
       </div>
 
-      <div className="bg-blue-600 text-white p-6 rounded-2xl shadow-lg mt-8">
+      <div className="bg-blue-600 dark:bg-blue-700 text-white p-6 rounded-2xl shadow-lg mt-8">
         <div className="flex justify-between items-end mb-4">
-          <span className="text-blue-200">Total per person</span>
+          <span className="text-blue-200 dark:text-blue-100">Total per person</span>
           <span className="text-4xl font-bold">${perPerson.toFixed(2)}</span>
         </div>
-        <div className="border-t border-blue-500 pt-4 flex justify-between text-sm text-blue-100">
+        <div className="border-t border-blue-500 dark:border-blue-600 pt-4 flex justify-between text-sm text-blue-100 dark:text-blue-50">
           <span>Total Bill: ${total.toFixed(2)}</span>
           <span>Total Tip: ${tipAmount.toFixed(2)}</span>
         </div>

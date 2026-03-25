@@ -12,6 +12,10 @@
         "role": {
           "type": "string",
           "enum": ["user", "admin"]
+        },
+        "points": {
+          "type": "number",
+          "description": "User reward points"
         }
       }
     }

@@ -54,14 +54,14 @@ export default function AiRewriter() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
-      <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl border border-purple-100">
+      <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-6 rounded-2xl border border-purple-100 dark:border-purple-800">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-purple-600 text-white rounded-lg">
+          <div className="p-2 bg-purple-600 dark:bg-purple-500 text-white rounded-lg">
             <Type size={20} />
           </div>
-          <h2 className="text-xl font-bold text-purple-900">AI Text Rewriter</h2>
+          <h2 className="text-xl font-bold text-purple-900 dark:text-purple-100">AI Text Rewriter</h2>
         </div>
-        <p className="text-purple-700/80 text-sm">
+        <p className="text-purple-700/80 dark:text-purple-300/80 text-sm">
           Fix grammar, improve flow, and change the tone of your emails, essays, or messages instantly.
         </p>
       </div>
@@ -72,7 +72,7 @@ export default function AiRewriter() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Paste your rough draft here..."
-            className="w-full h-48 p-4 bg-white border border-neutral-200 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-shadow text-neutral-700"
+            className="w-full h-48 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-shadow text-neutral-700 dark:text-neutral-300 placeholder-neutral-400 dark:placeholder-neutral-500"
           />
         </div>
 
@@ -81,7 +81,7 @@ export default function AiRewriter() {
             <select
               value={tone}
               onChange={(e) => setTone(e.target.value)}
-              className="w-full p-3 bg-white border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full p-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-neutral-900 dark:text-neutral-50"
             >
               <option value="professional">Professional & Formal</option>
               <option value="casual">Casual & Friendly</option>
@@ -93,7 +93,7 @@ export default function AiRewriter() {
           <button
             onClick={handleRewrite}
             disabled={loading || !text.trim()}
-            className="w-full sm:w-auto px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow"
+            className="w-full sm:w-auto px-8 py-3 bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 text-white font-medium rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow"
           >
             {loading ? (
               <>
@@ -111,7 +111,7 @@ export default function AiRewriter() {
       </div>
 
       {error && (
-        <div className="p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 text-sm">
+        <div className="p-4 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl border border-red-100 dark:border-red-900/50 text-sm">
           {error}
         </div>
       )}
@@ -119,18 +119,18 @@ export default function AiRewriter() {
       {result && (
         <div className="mt-8 space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-neutral-900">Rewritten Result</h3>
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">Rewritten Result</h3>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-purple-600 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-lg transition-colors"
             >
               {copied ? <Check size={16} /> : <Copy size={16} />}
               {copied ? 'Copied!' : 'Copy'}
             </button>
           </div>
-          <div className="p-6 bg-white border border-neutral-200 rounded-2xl shadow-sm prose prose-purple max-w-none">
+          <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm prose prose-purple dark:prose-invert max-w-none">
             {result.split('\n').map((paragraph, idx) => (
-              <p key={idx} className="text-neutral-700 leading-relaxed mb-2 last:mb-0">
+              <p key={idx} className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-2 last:mb-0">
                 {paragraph}
               </p>
             ))}

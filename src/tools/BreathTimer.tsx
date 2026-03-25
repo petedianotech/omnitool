@@ -72,29 +72,29 @@ export default function BreathTimer() {
   return (
     <div className="flex flex-col items-center justify-center space-y-12 py-12">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold text-neutral-800">{getMessage()}</h2>
-        <p className="text-neutral-500 font-mono">{Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</p>
+        <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100">{getMessage()}</h2>
+        <p className="text-neutral-500 dark:text-neutral-400 font-mono">{Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</p>
       </div>
 
       <div className="relative w-64 h-64 flex items-center justify-center">
         <motion.div
           animate={{ scale: getScale() }}
           transition={{ duration: 4, ease: "easeInOut" }}
-          className="absolute w-32 h-32 bg-blue-200 rounded-full opacity-50 blur-xl"
+          className="absolute w-32 h-32 bg-blue-200 dark:bg-blue-900/50 rounded-full opacity-50 blur-xl"
         />
         <motion.div
           animate={{ scale: getScale() }}
           transition={{ duration: 4, ease: "easeInOut" }}
-          className="absolute w-24 h-24 bg-blue-400 rounded-full opacity-80"
+          className="absolute w-24 h-24 bg-blue-400 dark:bg-blue-600 rounded-full opacity-80"
         />
-        <div className="absolute w-16 h-16 bg-blue-600 rounded-full shadow-lg flex items-center justify-center text-white font-bold">
+        <div className="absolute w-16 h-16 bg-blue-600 dark:bg-blue-500 rounded-full shadow-lg flex items-center justify-center text-white font-bold">
           {phase !== "idle" && phase.toUpperCase()}
         </div>
       </div>
 
       <button
         onClick={toggleTimer}
-        className="px-8 py-4 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold rounded-full shadow-lg transition-all flex items-center gap-3"
+        className="px-8 py-4 bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 font-semibold rounded-full shadow-lg transition-all flex items-center gap-3"
       >
         {isActive ? <><Square size={20} fill="currentColor" /> Stop</> : <><Play size={20} fill="currentColor" /> Start 1-Min Session</>}
       </button>

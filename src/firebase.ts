@@ -12,19 +12,9 @@ export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : nul
 
 // Initialize Auth and Firestore
 export const auth = getAuth(app);
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
-
-// Test connection
-async function testConnection() {
-  try {
-    await getDocFromServer(doc(db, 'test', 'connection'));
-  } catch (error) {
-    if(error instanceof Error && error.message.includes('the client is offline')) {
-      console.error("Please check your Firebase configuration. ");
-    }
-  }
-}
-testConnection();
+export const db = (firebaseConfig as any).firestoreDatabaseId 
+  ? getFirestore(app, (firebaseConfig as any).firestoreDatabaseId) 
+  : getFirestore(app);
 
 export enum OperationType {
   CREATE = 'create',

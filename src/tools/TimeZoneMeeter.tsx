@@ -27,23 +27,23 @@ export default function TimeZoneMeeter() {
   return (
     <div className="space-y-8 max-w-md mx-auto">
       <div className="grid grid-cols-2 gap-4">
-        <div className={`p-6 rounded-2xl text-center transition-colors ${localWorking ? 'bg-blue-50 border border-blue-100' : 'bg-neutral-100'}`}>
-          <h3 className="text-sm font-medium text-neutral-500 mb-2">Your Time</h3>
-          <div className="text-3xl font-bold text-neutral-900">{formatTime(localTime)}</div>
-          <p className="text-xs mt-2 text-neutral-400">{localWorking ? 'Working Hours' : 'Outside Hours'}</p>
+        <div className={`p-6 rounded-2xl text-center transition-colors ${localWorking ? 'bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800' : 'bg-neutral-100 dark:bg-neutral-800'}`}>
+          <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-2">Your Time</h3>
+          <div className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">{formatTime(localTime)}</div>
+          <p className="text-xs mt-2 text-neutral-400 dark:text-neutral-500">{localWorking ? 'Working Hours' : 'Outside Hours'}</p>
         </div>
         
-        <div className={`p-6 rounded-2xl text-center transition-colors ${remoteWorking ? 'bg-green-50 border border-green-100' : 'bg-neutral-100'}`}>
-          <h3 className="text-sm font-medium text-neutral-500 mb-2">Their Time</h3>
-          <div className="text-3xl font-bold text-neutral-900">{formatTime(remoteTime)}</div>
-          <p className="text-xs mt-2 text-neutral-400">{remoteWorking ? 'Working Hours' : 'Outside Hours'}</p>
+        <div className={`p-6 rounded-2xl text-center transition-colors ${remoteWorking ? 'bg-green-50 dark:bg-green-900/30 border border-green-100 dark:border-green-800' : 'bg-neutral-100 dark:bg-neutral-800'}`}>
+          <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-2">Their Time</h3>
+          <div className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">{formatTime(remoteTime)}</div>
+          <p className="text-xs mt-2 text-neutral-400 dark:text-neutral-500">{remoteWorking ? 'Working Hours' : 'Outside Hours'}</p>
         </div>
       </div>
 
       <div className="space-y-4">
         <div className="flex justify-between items-center">
-          <label className="text-sm font-medium text-neutral-700">Time Difference</label>
-          <span className="font-bold text-blue-600">
+          <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Time Difference</label>
+          <span className="font-bold text-blue-600 dark:text-blue-400">
             {offsetHours > 0 ? '+' : ''}{offsetHours} hours
           </span>
         </div>
@@ -55,9 +55,9 @@ export default function TimeZoneMeeter() {
           step="1"
           value={offsetHours}
           onChange={(e) => setOffsetHours(Number(e.target.value))}
-          className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+          className="w-full h-2 bg-neutral-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-blue-600 dark:accent-blue-500"
         />
-        <div className="flex justify-between text-xs text-neutral-400">
+        <div className="flex justify-between text-xs text-neutral-400 dark:text-neutral-500">
           <span>-12h</span>
           <span>Same Time</span>
           <span>+12h</span>
@@ -65,11 +65,11 @@ export default function TimeZoneMeeter() {
       </div>
 
       {isGoodMeetingTime ? (
-        <div className="p-4 bg-green-100 text-green-800 rounded-xl text-center font-medium flex items-center justify-center gap-2">
+        <div className="p-4 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 rounded-xl text-center font-medium flex items-center justify-center gap-2 border border-green-200 dark:border-green-900/50">
           <span>✅</span> This is a great time for a meeting!
         </div>
       ) : (
-        <div className="p-4 bg-amber-100 text-amber-800 rounded-xl text-center font-medium flex items-center justify-center gap-2">
+        <div className="p-4 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-400 rounded-xl text-center font-medium flex items-center justify-center gap-2 border border-amber-200 dark:border-amber-900/50">
           <span>⚠️</span> Someone might be asleep or off work.
         </div>
       )}

@@ -31,7 +31,8 @@ service cloud.firestore {
 
     function isValidUser(data) {
       return (!('email' in data) || data.email is string) &&
-             (!('role' in data) || data.role in ['user', 'admin']);
+             (!('role' in data) || data.role in ['user', 'admin']) &&
+             (!('points' in data) || data.points is number);
     }
 
     function hasOnlyAllowedFields(data, allowedFields) {
@@ -43,12 +44,12 @@ service cloud.firestore {
       allow create: if isAuthenticated() && 
                        isOwner(userId) && 
                        isValidUser(request.resource.data) && 
-                       hasOnlyAllowedFields(request.resource.data, ['email', 'role']) &&
+                       hasOnlyAllowedFields(request.resource.data, ['email', 'role', 'points']) &&
                        (request.resource.data.role == 'user' || isAdmin());
       allow update: if isAuthenticated() && 
                        isOwner(userId) && 
                        isValidUser(request.resource.data) && 
-                       hasOnlyAllowedFields(request.resource.data, ['email', 'role']) &&
+                       hasOnlyAllowedFields(request.resource.data, ['email', 'role', 'points']) &&
                        (request.resource.data.role == resource.data.role || isAdmin());
       allow delete: if isAdmin();
     }

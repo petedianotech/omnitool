@@ -21,12 +21,12 @@ export default function DigitalShredder() {
 
   return (
     <div className="space-y-8 max-w-2xl mx-auto flex flex-col h-[60vh]">
-      <div className="bg-red-50 border border-red-100 p-4 rounded-xl flex items-start gap-3 text-sm text-red-800">
+      <div className="bg-red-50 dark:bg-red-900/30 border border-red-100 dark:border-red-800 p-4 rounded-xl flex items-start gap-3 text-sm text-red-800 dark:text-red-400">
         <ShieldAlert className="shrink-0 mt-0.5" size={18} />
         <p>Paste sensitive information here (like a credit card number or temporary password). Copy it, then shred it to completely remove it from your screen and memory.</p>
       </div>
 
-      <div className="flex-1 relative overflow-hidden rounded-2xl border-2 border-neutral-200 focus-within:border-red-500 transition-colors bg-neutral-50">
+      <div className="flex-1 relative overflow-hidden rounded-2xl border-2 border-neutral-200 dark:border-neutral-800 focus-within:border-red-500 dark:focus-within:border-red-500 transition-colors bg-neutral-50 dark:bg-neutral-900">
         <AnimatePresence>
           {!isShredding ? (
             <motion.textarea
@@ -37,14 +37,14 @@ export default function DigitalShredder() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Paste sensitive info here..."
-              className="w-full h-full p-6 bg-transparent outline-none resize-none font-mono text-lg"
+              className="w-full h-full p-6 bg-transparent outline-none resize-none font-mono text-lg text-neutral-900 dark:text-neutral-50 placeholder-neutral-400 dark:placeholder-neutral-600"
             />
           ) : (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-900 text-white"
+              className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-900 dark:bg-black text-white"
             >
               <div className="flex gap-1 overflow-hidden h-32">
                 {[...Array(10)].map((_, i) => (
@@ -67,14 +67,14 @@ export default function DigitalShredder() {
         <button
           onClick={handleCopy}
           disabled={!text || isShredding}
-          className="p-4 bg-white border border-neutral-200 hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-semibold text-neutral-700 transition-colors flex items-center justify-center gap-2 shadow-sm"
+          className="p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-semibold text-neutral-700 dark:text-neutral-300 transition-colors flex items-center justify-center gap-2 shadow-sm"
         >
           <Copy size={20} /> Copy to Clipboard
         </button>
         <button
           onClick={handleShred}
           disabled={!text || isShredding}
-          className="p-4 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-semibold text-white transition-colors flex items-center justify-center gap-2 shadow-md"
+          className="p-4 bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-semibold text-white transition-colors flex items-center justify-center gap-2 shadow-md"
         >
           <Trash2 size={20} /> Shred Now
         </button>
