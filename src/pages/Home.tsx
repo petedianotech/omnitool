@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, ChevronRight } from "lucide-react";
+import { Search, ChevronRight, Star } from "lucide-react";
 import { tools, categories } from "../lib/data";
 import * as Icons from "lucide-react";
+import { useFavorites } from "../lib/useFavorites";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const { favorites } = useFavorites();
 
   const filteredTools = tools.filter(
     (t) =>
@@ -14,9 +16,11 @@ export default function Home() {
       t.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const favoriteTools = tools.filter((t) => favorites.includes(t.id));
+
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
-      <header className="space-y-2">
+      <header className="hidden md:block space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">OmniTool</h1>
         <p className="text-neutral-500">Everyday solvers for everyone.</p>
       </header>
@@ -65,6 +69,33 @@ export default function Home() {
         </div>
       ) : (
         <>
+          {/* Favorites */}
+          {favoriteTools.length > 0 && (
+            <div className="space-y-4">
+              <h2 className="text-lg font-semibold flex items-center gap-2">
+                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                Favorites
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {favoriteTools.map((tool) => {
+                  const Icon = (Icons as any)[tool.icon] || Icons.Wrench;
+                  return (
+                    <Link
+                      key={tool.id}
+                      to={`/tool/${tool.id}`}
+                      className="flex flex-col items-center p-4 bg-white rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md transition-all active:scale-95 text-center gap-3"
+                    >
+                      <div className="p-3 bg-yellow-50 text-yellow-600 rounded-xl">
+                        <Icon size={24} />
+                      </div>
+                      <span className="text-xs font-medium text-neutral-700 line-clamp-2">{tool.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Quick Access */}
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Quick Access</h2>

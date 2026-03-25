@@ -1,18 +1,78 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBts9SRSCZBdqX4WYIjl1BGc84_mQO7bLs",
-  authDomain: "omnitool-webapp.firebaseapp.com",
-  projectId: "omnitool-webapp",
-  storageBucket: "omnitool-webapp.firebasestorage.app",
-  messagingSenderId: "96123643278",
-  appId: "1:96123643278:web:875f974d44b24d4923b0df",
-  measurementId: "G-7X8GSX5KSE"
-};
+import { getAuth } from "firebase/auth";
+import { getFirestore, doc, getDocFromServer } from "firebase/firestore";
+import firebaseConfig from "../firebase-applet-config.json";
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 
 // Initialize Analytics (only in browser environment)
 export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
+
+// Initialize Auth and Firestore
+export const auth = getAuth(app);
+export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+
+// Test connection
+async function testConnection() {
+  try {
+    await getDocFromServer(doc(db, 'test', 'connection'));
+  } catch (error) {
+    if(error instanceof Error && error.message.includes('the client is offline')) {
+      console.error("Please check your Firebase configuration. ");
+    }
+  }
+}
+testConnection();
+
+export enum OperationType {
+  CREATE = 'create',
+  UPDATE = 'update',
+  DELETE = 'delete',
+  LIST = 'list',
+  GET = 'get',
+  WRITE = 'write',
+}
+
+export interface FirestoreErrorInfo {
+  error: string;
+  operationType: OperationType;
+  path: string | null;
+  authInfo: {
+    userId?: string;
+    email?: string | null;
+    emailVerified?: boolean;
+    isAnonymous?: boolean;
+    tenantId?: string | null;
+    providerInfo?: {
+      providerId: string;
+      displayName: string | null;
+      email: string | null;
+      photoUrl: string | null;
+    }[];
+  }
+}
+
+export function handleFirestoreError(error: unknown, operationType: OperationType, path: string | null) {
+  const errInfo: FirestoreErrorInfo = {
+    error: error instanceof Error ? error.message : String(error),
+    authInfo: {
+      userId: auth.currentUser?.uid,
+      email: auth.currentUser?.email,
+      emailVerified: auth.currentUser?.emailVerified,
+      isAnonymous: auth.currentUser?.isAnonymous,
+      tenantId: auth.currentUser?.tenantId,
+      providerInfo: auth.currentUser?.providerData.map(provider => ({
+        providerId: provider.providerId,
+        displayName: provider.displayName,
+        email: provider.email,
+        photoUrl: provider.photoURL
+      })) || []
+    },
+    operationType,
+    path
+  }
+  console.error('Firestore Error: ', JSON.stringify(errInfo));
+  throw new Error(JSON.stringify(errInfo));
+}

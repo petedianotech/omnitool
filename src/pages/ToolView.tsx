@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { tools } from "../lib/data";
 import * as Icons from "lucide-react";
+import { useFavorites } from "../lib/useFavorites";
 
 // Lazy load tools to keep the bundle small
 const CurrencyConverter = lazy(() => import("../tools/CurrencyConverter"));
@@ -41,6 +42,7 @@ const toolComponents: Record<string, React.ComponentType> = {
 export default function ToolView() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const tool = tools.find((t) => t.id === id);
 
   if (!tool) {
@@ -53,17 +55,27 @@ export default function ToolView() {
   }
 
   const ToolComponent = toolComponents[tool.id];
+  const isFav = isFavorite(tool.id);
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300 pb-20">
-      <header className="flex items-center gap-4 border-b border-neutral-200 pb-4">
-        <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-neutral-500 hover:bg-neutral-100 rounded-full transition-colors">
-          <Icons.ArrowLeft size={24} />
-        </button>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{tool.name}</h1>
-          <p className="text-sm text-neutral-500">{tool.category}</p>
+      <header className="flex items-center justify-between border-b border-neutral-200 pb-4">
+        <div className="flex items-center gap-4">
+          <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-neutral-500 hover:bg-neutral-100 rounded-full transition-colors">
+            <Icons.ArrowLeft size={24} />
+          </button>
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">{tool.name}</h1>
+            <p className="text-sm text-neutral-500">{tool.category}</p>
+          </div>
         </div>
+        <button 
+          onClick={() => toggleFavorite(tool.id)}
+          className={`p-2 rounded-full transition-colors ${isFav ? 'text-yellow-500 bg-yellow-50 hover:bg-yellow-100' : 'text-neutral-400 hover:bg-neutral-100'}`}
+          aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
+        >
+          <Icons.Star size={24} className={isFav ? "fill-current" : ""} />
+        </button>
       </header>
 
       <div className="bg-white rounded-3xl shadow-sm border border-neutral-100 p-4 sm:p-6 min-h-[50vh]">
